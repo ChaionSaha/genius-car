@@ -1,0 +1,30 @@
+.checkout-btn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 3vw;
+	width: 15vw;
+	text-align: center;
+}
+
+.checkout-btn > span {
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: all 400ms ease;
+}
+
+.checkout-btn > span:last-of-type {
+	top: 150%;
+}
+
+.checkout-btn:hover > span:last-of-type {
+	top: 50%;
+}
+.checkout-btn:hover > span:first-of-type {
+	top: -150%;
+}
