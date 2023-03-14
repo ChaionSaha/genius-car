@@ -1,0 +1,28 @@
+.services {
+	padding: 3vw 2vw;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1vw;
+}
+
+.service {
+	width: 20%;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	padding: 1vw;
+	gap: 2vw;
+	border: 1px solid rgba(#000, 0.3);
+	justify-content: space-between;
+
+	& > button {
+		justify-self: flex-end;
+		border: none;
+		outline: none;
+		background: transparent;
+		transition: all 200ms;
+		&:hover {
+			color: red;
+		}
+	}
+}

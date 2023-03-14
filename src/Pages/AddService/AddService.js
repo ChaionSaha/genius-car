@@ -1,24 +1,55 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import styles from './AddService.module.scss';
 
 const AddService = () => {
 	const { register, handleSubmit } = useForm();
-	const onSubmit = (data) => console.log(data);
+	const formRef = useRef();
+	const onSubmit = (data) => {
+		console.log(data);
+		fetch('http://localhost:5000/service', {
+			method: 'post',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				console.log(result);
+				toast.success(`${data.name} added successfully`);
+				formRef.current.reset();
+			});
+	};
 	return (
-		<div>
+		<div className={styles.addService}>
 			<h1>Add a service</h1>
 
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
 				<input
-					{...register('firstName', {
+					placeholder='Name'
+					{...register('name', {
 						required: true,
 						maxLength: 20,
 					})}
 				/>
-				<input {...register('lastName', { pattern: /^[A-Za-z]+$/i })} />
+
 				<input
+					placeholder='Price'
 					type='number'
-					{...register('age', { min: 18, max: 99 })}
+					{...register('price')}
+				/>
+				<input
+					placeholder='Image Link'
+					type='text'
+					{...register('img')}
+				/>
+				<textarea
+					placeholder='Description'
+					type='text'
+					{...register('description')}
+					className={styles.description}
 				/>
 				<input type='submit' />
 			</form>

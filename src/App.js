@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import About from './Pages/About/About';
 import AddService from './Pages/AddService/AddService';
@@ -11,6 +12,9 @@ import ServiceDetail from './Pages/ServiceDetail/ServiceDetail';
 import Footer from './Pages/Shared/Footer/Footer';
 import Header from './Pages/Shared/Header/Header';
 import NotFound from './Pages/Shared/NotFound/NotFound';
+
+import 'react-toastify/dist/ReactToastify.css';
+import DeleteService from './Pages/DeleteService/DeleteService';
 
 function App() {
 	return (
@@ -42,9 +46,29 @@ function App() {
 						</RequireAuth>
 					}
 				></Route>
+				<Route
+					path='/deleteservice'
+					element={
+						<RequireAuth>
+							<DeleteService></DeleteService>
+						</RequireAuth>
+					}
+				></Route>
 				<Route path='*' element={<NotFound></NotFound>}></Route>
 			</Routes>
 			<Footer></Footer>
+			<ToastContainer
+				position='top-right'
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				theme='light'
+			/>
+
+			<ToastContainer />
 		</div>
 	);
 }
