@@ -27,6 +27,7 @@ const Checkout = () => {
 			console.log(result.data);
 			if (result.data.insertedId) {
 				toast.success("Order placed");
+				e.target.reset();
 			}
 		});
 	};
