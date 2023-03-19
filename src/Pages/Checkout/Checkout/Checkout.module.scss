@@ -1,0 +1,51 @@
+$color-primary: #007bff;
+
+.checkout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1vw 0vw;
+	font-size: 1vw;
+}
+
+form {
+	margin-top: 2vw;
+	width: 40%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	gap: 1vw;
+}
+
+.inputGroup {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	& > input {
+		width: 90%;
+		padding: 0.5vw;
+	}
+}
+
+.submit {
+	width: 40%;
+	padding: 0.7vw;
+	background: $color-primary;
+	border: 1px solid $color-primary;
+	color: #fff;
+	transition: all 200ms;
+
+	&:hover {
+		background: darken($color-primary, 5%);
+	}
+}
+
+.productPrice {
+	display: flex;
+	& > input {
+		width: 41%;
+	}
+}

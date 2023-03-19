@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
+import useServiceDetails from "../../hooks/useServiceDetails";
 import "./ServiceDetails.css";
 
 const ServiceDetail = () => {
 	const { serviceId } = useParams();
-	const [service, setService] = useState({});
-	useEffect(() => {
-		fetch(`http://localhost:5000/service/${serviceId}`)
-			.then((res) => res.json())
-			.then((data) => setService(data));
-	}, []);
+	const [service] = useServiceDetails(serviceId);
+
 	return (
 		<div className="d-flex p-3 flex-column ml-auto justify-content-center align-items-center">
 			<h2 className="mb-3">{service.name}</h2>
