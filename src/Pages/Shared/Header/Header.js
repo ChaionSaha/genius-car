@@ -34,7 +34,7 @@ const Header = () => {
 							<Nav.Link href='/home#services'>Services</Nav.Link>
 							<Nav.Link href='/home#experts'>Experts</Nav.Link>
 						</Nav>
-						<Nav>
+						<Nav className='d-flex justify-content-center  align-items-center'>
 							{user && (
 								<>
 									<Nav.Link as={Link} to='/orders'>
@@ -46,7 +46,7 @@ const Header = () => {
 									<Nav.Link as={Link} to='/deleteservice'>
 										Delete Service
 									</Nav.Link>
-									<p>{user?.email}</p>
+									<Nav.Link className='text-white'>{user?.email}</Nav.Link>
 								</>
 							)}
 							{user ? (
