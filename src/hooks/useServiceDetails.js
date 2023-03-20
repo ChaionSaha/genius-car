@@ -1,12 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const useServiceDetails = (id) => {
 	const [service, setService] = useState({});
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:5000/service/${id}`)
+			.get(`https://genius-car-server-ekrb.onrender.com/service/${id}`)
 			.then((data) => setService(data.data));
 	});
 

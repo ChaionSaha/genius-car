@@ -8,7 +8,7 @@ const AddService = () => {
 	const formRef = useRef();
 	const onSubmit = (data) => {
 		console.log(data);
-		fetch('http://localhost:5000/service', {
+		fetch('https://genius-car-server-ekrb.onrender.com/service', {
 			method: 'post',
 			headers: {
 				'content-type': 'application/json',
@@ -35,16 +35,8 @@ const AddService = () => {
 					})}
 				/>
 
-				<input
-					placeholder='Price'
-					type='number'
-					{...register('price')}
-				/>
-				<input
-					placeholder='Image Link'
-					type='text'
-					{...register('img')}
-				/>
+				<input placeholder='Price' type='number' {...register('price')} />
+				<input placeholder='Image Link' type='text' {...register('img')} />
 				<textarea
 					placeholder='Description'
 					type='text'

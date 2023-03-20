@@ -8,7 +8,7 @@ const DeleteService = () => {
 
 	const handleDelete = (id, name) => {
 		if (window.confirm(`Are you sure want to delete ${name}`)) {
-			fetch(`http://localhost:5000/service/${id}`, {
+			fetch(`https://genius-car-server-ekrb.onrender.com/service/${id}`, {
 				method: 'delete',
 			})
 				.then((res) => res.json())
@@ -29,11 +29,7 @@ const DeleteService = () => {
 				return (
 					<div className={styles.service} key={service._id}>
 						<p>{service.name}</p>
-						<button
-							onClick={() =>
-								handleDelete(service._id, service.name)
-							}
-						>
+						<button onClick={() => handleDelete(service._id, service.name)}>
 							<Trash3 size={25}></Trash3>
 						</button>
 					</div>
