@@ -8,9 +8,20 @@ const Orders = () => {
 	const [orders, setOrders] = useState([]);
 
 	useEffect(() => {
-		axios
-			.get(`http://localhost:5000/orders?email=${user?.email}`)
-			.then((result) => setOrders(result.data));
+		const handleOrders = async () => {
+			const { data } = await axios.get(
+				`http://localhost:5000/orders?email=${user?.email}`,
+				{
+					headers: {
+						authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+					},
+				}
+			);
+			console.log(data);
+			setOrders(data);
+		};
+
+		handleOrders();
 	}, [user]);
 
 	return (
