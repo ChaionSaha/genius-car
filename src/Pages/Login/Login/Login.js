@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import {
@@ -7,8 +6,9 @@ import {
 } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 import Loading from '../../Shared/Loading/Loading';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -23,7 +23,7 @@ const Login = () => {
 	let errorElement;
 	const [signInWithEmailAndPassword, user, loading, error] =
 		useSignInWithEmailAndPassword(auth);
-
+	const [token] = useToken(user);
 	const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
 	if (loading || sending) {
@@ -34,19 +34,14 @@ const Login = () => {
 		errorElement = <p className='text-danger'>Error: {error?.message}</p>;
 	}
 
+	if (token) navigate(from, { replace: true });
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 
 		await signInWithEmailAndPassword(email, password);
-		const { data } = await axios.post(
-			'https://genius-car-server-ekrb.onrender.com/login',
-			{ email }
-		);
-
-		localStorage.setItem('accessToken', `${data}`);
-		navigate(from, { replace: true });
 	};
 
 	const navigateRegister = (event) => {
@@ -57,9 +52,9 @@ const Login = () => {
 		const email = emailRef.current.value;
 		if (email) {
 			await sendPasswordResetEmail(email);
-			toast('Sent email');
+			toast.success('Sent email');
 		} else {
-			toast('please enter your email address');
+			toast.error('please enter your email address');
 		}
 	};
 

@@ -68,13 +68,13 @@ function App() {
 				position='top-right'
 				autoClose={5000}
 				hideProgressBar={false}
-				newestOnTop={false}
+				newestOnTop={true}
 				closeOnClick
 				rtl={false}
 				theme='light'
+				pauseOnHover={false}
+				pauseOnFocusLoss={false}
 			/>
-
-			<ToastContainer />
 		</div>
 	);
 }
